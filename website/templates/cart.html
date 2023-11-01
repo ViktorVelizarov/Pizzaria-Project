@@ -3,5 +3,27 @@
 {% block title %}Cart{% endblock %}
 
 {% block content%}
+  
     <h1> Cart</h1>
+    {% if pizza %}
+        <form method="post" action="/remove_pizza">
+        {% for piz in pizza %}
+            <div class="cart-item-container">
+                {% if piz %}
+                <p> {{piz}}</p>
+                <input type="hidden" name="pizzaName" value="{{piz}}">
+                <button type="submit">X</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+        </form>
+
+    <form method="post" action="/receive-orders">
+        <input type="hidden" name="currentOrder" value="{{pizza}}">
+        <button> Place Order </button>
+    </form>
+    {% else %}
+        <p> Your card is empty. </p>
+    {% endif %}
+
 {% endblock %}

@@ -3,5 +3,10 @@
 {% block title %}Receive Orders{% endblock %}
 
 {% block content%}
+
     <h1> Receive Orders</h1>
+    {% for ord in order %}
+        <p>{{ord}}</p>
+    {% endfor %}
+
 {% endblock %}
