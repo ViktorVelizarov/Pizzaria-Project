@@ -27,6 +27,10 @@ def cart():
         pizza_name = request.form.get('pizzaName')
         selected_pizzas.append(pizza_name)
         pizzas = Pizza.query.all()
+        print("current")
+        print(pizza_name)
+        print("all")
+        print(selected_pizzas)
         return render_template("home.html",user=current_user, pizzas=pizzas) 
     return render_template("cart.html", user=current_user, pizza = selected_pizzas) 
 
@@ -42,7 +46,7 @@ def receiveOrders():
     if request.method == 'POST': 
         currentOrder = request.form.get('currentOrder')
         order.append(currentOrder)
-        selected_pizzas = []
+        selected_pizzas.clear()
         return render_template("cart.html", user=current_user, pizza = selected_pizzas) 
     return render_template("receiveOrders.html", user=current_user, order=order) 
 
@@ -52,4 +56,12 @@ def remove_pizza():
     pizza_name = request.form.get('pizzaName')  
     if pizza_name in selected_pizzas:
          selected_pizzas.remove(pizza_name)   
-    return render_template("cart.html", user=current_user, pizza = selected_pizzas)    
+    print("current")
+    print(pizza_name)
+    return render_template("cart.html", user=current_user, pizza = selected_pizzas)   
+
+@views.route('/remove_all_pizzas', methods=['POST'])
+@login_required
+def remove_all_pizza():
+    selected_pizzas.clear()
+    return render_template("cart.html", user=current_user, pizza = selected_pizzas)  
