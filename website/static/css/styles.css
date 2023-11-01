@@ -1,0 +1,14 @@
+.navbar {
+  gap: 5px;
+}
+
+.pizza-container{
+  background-color: beige;
+  width: 200px;
+}
+
+.items-container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

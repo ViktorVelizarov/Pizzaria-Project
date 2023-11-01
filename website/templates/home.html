@@ -1,0 +1,18 @@
+<!--here we extend the base template-->
+{% extends "base.html" %}
+
+<!--overide the title block from the base tempalte-->
+{% block title %}Home{% endblock %}
+
+{% block content%}
+    <div class="items-container">
+    {% for pizza in pizzas %}
+        <div class="pizza-container">
+            <h1> {{pizza.name}} </h1>
+            <img src={{pizza.image}} height="100px" width="100px"/> 
+            <p> {{pizza.ingredients}} </p>
+            <button> Order now</button>
+        </div>
+    {% endfor %}
+    <div>
+{% endblock %}
