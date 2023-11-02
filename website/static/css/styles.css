@@ -36,6 +36,7 @@ body {
 .orders{
   display: flex;
   flex-direction: row;
+  gap: 10px
 }
 
 .order-on-board{

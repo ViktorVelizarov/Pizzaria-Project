@@ -52,18 +52,24 @@ def ordersBoard():
 def receiveOrders():
     global currentOrder
     if request.method == 'POST': 
-        currentOrderItem = request.form.get('currentOrder')   #add order to orders array
-        order.append(currentOrderItem )
-        selected_pizzas.clear() #clear the cart
         
         new_order = Order(date=datetime.now(), user_id=current_user.id, status="pending")     #create new user and hash his password, sha256 is a hashind method
         db.session.add(new_order)             #add the new order to the DB
         db.session.commit()   
         currentOrder = new_order  
+        
+        currentOrderInfo = request.form.get('currentOrder')
+        new_order_item = { new_order.id, currentOrderInfo }
+        print("new_order_item")
+        print(new_order_item)
+        order.append(new_order_item)
+        print("order list")
+        print(order)
+        selected_pizzas.clear() #clear the cart
+        
         print("curr order in receive-ord function")
         print(currentOrder)
         allOrders = Order.query.all()
-        #return redirect(url_for('views.orderNumber'))
         return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder, orders=allOrders) 
     return render_template("receiveOrders.html", user=current_user, order=order) 
 
@@ -86,5 +92,12 @@ def remove_all_pizza():
 @views.route('/start_order', methods=['POST'])
 @login_required
 def start_order():
-    chosenOrder = request.form.get('chosenOrder') 
+    chosen_id = request.form.get('chosen_id') 
+    startedOrder = Order.query.get(chosen_id)       # Retrieve the order
+    
+    if startedOrder:                         # Check if the order exists
+        startedOrder.status = "cooking"      # Update the status field    
+        db.session.commit()                  # Commit the changes to the database
+
+
     return render_template("receiveOrders.html", user=current_user, order=order)  
