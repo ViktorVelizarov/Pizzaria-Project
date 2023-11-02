@@ -4,4 +4,9 @@
 
 {% block content%}
     <h1> Waiting Page</h1>
+    {% if yourOrder%}
+        <p> Your order number is {{yourOrder.id}} </p>
+    {% else%}
+        <p> You havent made an order yet </p>
+    {% endif%}
 {% endblock %}

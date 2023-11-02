@@ -22,10 +22,6 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)    #primary key
     date = db.Column(db.DateTime(timezone=True), default=func.now())  #current date
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))         #foreign key
-    
-class PizzaOrders(db.Model):                        #table that links togheter pizzas and orders
-    id = db.Column(db.Integer, primary_key=True)    #many-to-many relationship\
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))      #foreign keys
-    pizza_id = db.Column(db.Integer, db.ForeignKey('pizza.id'))
+    status = db.Column(db.String(150))
     
     
