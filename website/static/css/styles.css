@@ -12,6 +12,11 @@ body {
   position: relative;
 }
 
+.navbar-item{
+  background-color: red;
+  color: white
+}
+
 .pizza-container {
   background-color: beige;
   width: 200px;

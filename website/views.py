@@ -33,13 +33,13 @@ def cart():
     return render_template("cart.html", user=current_user, pizza = selected_pizzas) 
 
 
-@views.route('/waiting-page', methods=['GET']) 
+@views.route('/order-number', methods=['GET']) 
 @login_required
-def waitingPage():
+def orderNumber():
     global currentOrder
     print("current order in waiting function")
     print(currentOrder)
-    return render_template("waitingPage.html", user=current_user, yourOrder=currentOrder)
+    return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder)
 
 @views.route('/orders-board', methods=['GET'])
 @login_required
@@ -63,8 +63,8 @@ def receiveOrders():
         print("curr order in receive-ord function")
         print(currentOrder)
         allOrders = Order.query.all()
-        #return redirect(url_for('views.waitingPage'))
-        return render_template("waitingPage.html", user=current_user, yourOrder=currentOrder, orders=allOrders) 
+        #return redirect(url_for('views.orderNumber'))
+        return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder, orders=allOrders) 
     return render_template("receiveOrders.html", user=current_user, order=order) 
 
 @views.route('/remove_pizza', methods=['POST'])
