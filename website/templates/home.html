@@ -19,6 +19,8 @@
                     <button type="submit">Details</button>
             </form>
             
+            <img src={{pizza.image}} height="100px" width="100px"/> 
+            <p> {{pizza.ingredients}} </p>
             <form method="post" action="/cart">
                 <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
                 <button type="submit">Order now</button>
