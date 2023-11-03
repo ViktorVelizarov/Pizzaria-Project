@@ -3,7 +3,7 @@
 #a blueprint in py is just a file that stores the routes of our app
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from . import db
+
 from .models import Pizza
 import json
 
@@ -30,7 +30,20 @@ def cart():
 def waitingPage():
     return render_template("waitingPage.html", user=current_user) 
 
+
 @views.route('/receive-orders', methods=['GET'])  #waitingPage route
 @login_required
 def receiveOrders():
     return render_template("receiveOrders.html", user=current_user) 
+
+
+@views.route('/pizzas/details' ,  methods=['GET', 'POST'])
+def greet():
+    pizza = []
+    if request.method == 'POST':
+        pizza = request.form.get('pizza')
+        print(pizza)
+        return render_template('details.html', pizza=pizza)
+    else:
+
+        return render_template('details.html', pizza=pizza)
