@@ -6,7 +6,7 @@
   
     <h1> Cart</h1>
     {% if pizza %}
-        {% for piz in pizza %}
+    {% for piz in pizza.split(', ') %}
         <form method="post" action="/remove_pizza">
             <div class="cart-item-container">
                 {% if piz %}

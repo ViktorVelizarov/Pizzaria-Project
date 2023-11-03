@@ -23,5 +23,11 @@ class Order(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())  #current date
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))         #foreign key
     status = db.Column(db.String(150))
+    orderedItems = db.Column(db.String(500))
+    
+class Cart(db.Model):
+    id = db.Column(db.Integer, primary_key=True)    #primary key
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))         #foreign key
+    content = db.Column(db.String(500))
     
     
