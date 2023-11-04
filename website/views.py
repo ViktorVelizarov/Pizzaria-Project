@@ -84,13 +84,15 @@ def ordersBoard():
 def receiveOrders():
     global currentOrder
     if request.method == 'POST': 
-        
-        new_order = Order(date=datetime.now(), user_id=current_user.id, status="pending")     #create new user and hash his password, sha256 is a hashind method
+        currentOrderInfo = request.form.get('currentOrder')
+        print("pizza")
+        print(currentOrderInfo)
+        new_order = Order(date=datetime.now(), user_id=current_user.id, status="pending",  orderedItems = currentOrderInfo)     #create new user and hash his password, sha256 is a hashind method
         db.session.add(new_order)             #add the new order to the DB
         db.session.commit()   
         currentOrder = new_order  
         
-        currentOrderInfo = request.form.get('currentOrder')
+        
         order.append({'id': new_order.id, 'orderInfo': currentOrderInfo})
         print(order)
         selected_pizzas.clear() #clear local list cart
@@ -105,7 +107,10 @@ def receiveOrders():
         allOrders = Order.query.all()
         
         return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder, orders=allOrders) 
-    return render_template("receiveOrders.html", user=current_user, order=order) 
+   
+    else:
+        allOrders = Order.query.all()     
+        return render_template("receiveOrders.html", user=current_user, allOrders=allOrders) 
 
 @views.route('/remove_pizza', methods=['POST'])
 @login_required
@@ -138,10 +143,11 @@ def remove_all_pizza():
 def start_order():
     chosen_id = request.form.get('chosen_id') 
     startedOrder = Order.query.get(chosen_id)       # Retrieve the order
-    
+    print("startedOrder")
+    print(startedOrder)
     if startedOrder:                         # Check if the order exists
         startedOrder.status = "cooking"      # Update the status field    
         db.session.commit()                  # Commit the changes to the database
 
-
-    return render_template("receiveOrders.html", user=current_user, order=order)  
+    allOrders = Order.query.all()
+    return render_template("receiveOrders.html", user=current_user, allOrders=allOrders)  

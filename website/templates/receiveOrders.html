@@ -5,12 +5,13 @@
 {% block content%}
 
     <h1> Receive Orders</h1>
-    {%for ord in order %}
+    {%for order in allOrders%}
     <form method="post" action="/start_order">
         <div class="orders">
-        <p>{{ord.id}}</p>
-        <p>{{ord.orderInfo}}</p>
-        <input type="hidden" name="chosen_id" value="{{id}}">
+        <p>Id: {{order.id}} ____</p>
+        <p>Content: {{order.orderedItems}} ____</p>
+        <p>Status: {{order.status}} ____</p>
+        <input type="hidden" name="chosen_id" value="{{order.id}}">
         <button> Start </button>
         </div>
     </form>
