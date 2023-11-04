@@ -7,30 +7,31 @@
     <title>{% block title %}Base{% endblock %}</title>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav>
-      <div class="navbar">
-
-        <div class="navbar-text">
-          <p>Mario & Luigi's<br>Pizzeria</p>
-        </div>
-        <div class="navbar-nav">
-          {% if user.is_authenticated %}
-          <a href="/">Home</a>
-          <a href="/logout">Logout</a>
-          <a href="/cart">Cart</a>
-          {% if user.role == "admin" %}
-          <a href="/receive-orders">Receive orders</a>
-          {% endif %}
-          {% else %}
-          <div class="top-right">
-            <a href="/login">LOGIN</a>
-            <a href="/sign-up">SIGN UP</a>
-          </div>
-          {% endif %}
-        </div>
+<!-- Navbar -->
+<nav>
+  <div class="navbar">
+    <div class="navbar-text">
+      <p>Mario & Luigi's<br>Pizzeria</p>
+    </div>
+    <div class="navbar-nav">
+      {% if user.is_authenticated %}
+      <div class="top-right">
+        <a href="/" class="white-text">Home</a>
+        <a href="/cart" class="white-text">Cart</a>
+        <a href="/logout" class="white-text">Logout</a>
       </div>
-    </nav>
+      {% if user.role == "admin" %}
+      <a href="/receive-orders" class="white-text">Receive orders</a>
+      {% endif %}
+      {% else %}
+      <div class="top-right">
+        <a href="/login" class="white-text">Login</a>
+        <a href="/sign-up" class="white-text">Sign up</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
 
     <!-- Code that displays flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
