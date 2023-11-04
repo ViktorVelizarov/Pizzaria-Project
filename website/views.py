@@ -3,6 +3,7 @@
 #a blueprint in py is just a file that stores the routes of our app
 from flask import Blueprint, redirect, render_template, request, flash, jsonify, url_for
 from flask_login import login_required, current_user
+from .models import Pizza
 from . import db
 from .models import Pizza, Order, Cart
 import json
@@ -60,6 +61,17 @@ def orderNumber():
     print("current order in waiting function")
     print(currentOrder)
     return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder)
+
+@views.route('/pizzas/details' ,  methods=['GET', 'POST'])
+def greet():
+    pizza = []
+    if request.method == 'POST':
+        pizza = request.form.get('pizza')
+        print(pizza)
+        return render_template('details.html', pizza=pizza)
+    else:
+
+        return render_template('details.html', pizza=pizza)
 
 @views.route('/orders-board', methods=['GET'])
 @login_required
