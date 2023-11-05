@@ -1,7 +1,9 @@
 /* styles.css */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(rgba(165, 108, 2, 0.5), rgba(0, 0, 0, 0.5)); /* Orange to black gradient with low opacity */
+  background-attachment: fixed; /* Keep the gradient fixed on scroll */
+  background-repeat: no-repeat; /* Prevent the gradient from repeating */
 }
 
 .navbar {
@@ -11,6 +13,7 @@ body {
   height: 100px; /* You can adjust the height as needed */
   display: flex;
   position: relative;
+  border-radius: 0 0 15px 15px; /* Add curved borders to the sides and bottom */
 }
 
 .pizza-container {
@@ -23,20 +26,49 @@ body {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add a shadow to the pizza containers */
+  border-radius: 15px; /* Add curved borders to the pizza containers */
 }
 
 .pizza-container img {
   max-height: 100px; /* Maximum height of 100px */
   width: auto; /* Automatically adjust the width to maintain the aspect ratio */
   border-radius: 10px; /* Add rounded borders to the images */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add a shadow to the pizza images */
+}
+
+
+:root {
+  --primary: #FEA116;
+  --light: #F1F8FF;
+  --dark: #0F172B;
+}
+
+.ff-secondary {
+  font-family: 'Pacifico', cursive;
+}
+
+.fw-medium {
+  font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+  font-weight: 700 !important;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 45px;
+  z-index: 99;
 }
 
 .pizza-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0 50px; /* Add a horizontal margin */
 }
+
 
 .cart-item-container {
   display: flex;
@@ -72,6 +104,12 @@ body {
   float: left; /* Float the logo to the left to position it in the top left */
   margin-right: 10px; /* Add some spacing to separate the logo from the navbar content */
 }
+
+.logo-image {
+  max-height: 40px; /* Adjust the height as needed */
+  margin-right: 10px; /* Add margin to separate the logo from the brand text */
+}
+
 
 .centered-image {
   display: block;
@@ -121,4 +159,48 @@ body {
 
 .order-button {
   display: inline-block; /* Make the button display inline */
+}
+
+.centered {
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  background-color: #4CAF50; /* Green background color for success messages */
+  color: white; /* White text color for success messages */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  opacity: 0; /* Initially make the element transparent */
+  animation: fadeIn 0.25s ease-in forwards; /* Apply the fadeIn animation */
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.25s ease-in forwards;
+}
+
+/* Define the fadeIn animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.order-number {
+  font-weight: bold;
+}
+
+.orders button {
+  margin-right: 10px;
 }

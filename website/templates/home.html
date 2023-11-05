@@ -5,6 +5,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="fade-in">
     <div class="items-container">
         <div class="pizza-list">
             {% for pizza in pizzas %}
@@ -14,7 +15,7 @@
                     <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
                     <form method="post" action="/cart">
                         <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
-                        <button type="submit">Order now</button>
+                        <button type="submit">Add to cart</button>
                     </form>
                     <div style="margin-bottom: 10px;"></div> <!-- Add one blank line -->
                 </div>
@@ -24,4 +25,5 @@
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock %}
