@@ -1,22 +1,33 @@
+<!-- Set up an automatic refresh of the page every 1 second -->
 <meta http-equiv="refresh" content="1">
+
+<!-- Extend the "base.html" template -->
 {% extends "base.html" %}
 
+<!-- Override the title block from the base template -->
 {% block title %}Orders board{% endblock %}
 
-{% block content%}
-    <div class="center-container">
-        <h1 class="center-text">Coming right up!</h1>
-        <br>
-        <table class="center-table">
-            <tbody>
-                {% for ord in orders %}
-                    <tr class="order-on-board">
-                        <td class="order-number">Order #{{ord.id}}:</td>
-                        <td class="status">{{ord.status}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+{% block content %}
+<!-- Container for centering content -->
+<div class="center-container">
+    <!-- Heading for the orders board, centered -->
+    <h1 class="center-text">Coming right up!</h1>
+    <br>
+
+    <!-- Create a centered table for displaying orders -->
+    <table class="center-table">
+        <tbody>
+            <!-- Loop through the list of orders -->
+            {% for ord in orders %}
+                <tr class="order-on-board">
+                    <!-- Display the order number with "Order #" and center the text -->
+                    <td class="order-number">Order #{{ord.id}}:</td>
+                    <!-- Display the order status and center the text -->
+                    <td class="status">{{ord.status}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 </div>
 {% endblock %}

@@ -1,18 +1,26 @@
+<!-- Extend the "base.html" template -->
 {% extends "base.html" %}
 
+<!-- Override the title block from the base template -->
 {% block title %}Orders{% endblock %}
 
 {% block content %}
+    <!-- Create a centered content container -->
     <div class="centered-content">
+        <!-- Display the main heading -->
         <h1>Receive orders</h1>
+        <!-- Loop through the list of orders -->
         {% for ord in order %}
-        <form method="post" action="/start_order">
-            <div class="orders">
-                <p>{{ord}}</p>
-                <input type="hidden" name="chosenOrder" value="{{ord}}">
-                <button class="center-button">Start</button>
-            </div>
-        </form>
+            <form method="post" action="/start_order">
+                <div class="orders">
+                    <!-- Display the order information -->
+                    <p>{{ord}}</p>
+                    <!-- Hidden input to store the chosen order -->
+                    <input type="hidden" name="chosenOrder" value="{{ord}}">
+                    <!-- Button to start processing the order -->
+                    <button class="center-button">Start</button>
+                </div>
+            </form>
         {% endfor %}
     </div>
 {% endblock %}

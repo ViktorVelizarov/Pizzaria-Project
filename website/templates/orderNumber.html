@@ -1,15 +1,23 @@
+<!-- Extend the "base.html" template -->
 {% extends "base.html" %}
 
+<!-- Override the title block from the base template -->
 {% block title %}Coming right up!{% endblock %}
 
 {% block content %}
+    <!-- Check if 'yourOrder' exists -->
     {% if yourOrder %}
+        <!-- Display the order number with horizontal centering -->
         <p class="horizontal-center-text">Your order number is {{yourOrder.id}}</p>
+        <!-- Form for checking order status with a GET request -->
         <form method="get" action="/orders-board">
+            <!-- Hidden input to indicate a redirect -->
             <input type="hidden" name="redirect" value="true">
+            <!-- Submit button to check the order status -->
             <button type="submit">Check Status</button>
         </form>
     {% else %}
+        <!-- Display a message for users who haven't made an order yet with horizontal centering -->
         <p class="horizontal-center-text">You haven't made an order yet</p>
     {% endif %}
 {% endblock %}
