@@ -12,7 +12,6 @@ from datetime import datetime
 views = Blueprint('views', __name__)     #we create a BP named views
 
 selected_pizzas = [] 
-order = []
 currentOrder = []
 
 
@@ -91,10 +90,6 @@ def receiveOrders():
         db.session.add(new_order)             #add the new order to the DB
         db.session.commit()   
         currentOrder = new_order  
-        
-        
-        order.append({'id': new_order.id, 'orderInfo': currentOrderInfo})
-        print(order)
         selected_pizzas.clear() #clear local list cart
         
         #clear DB cart
