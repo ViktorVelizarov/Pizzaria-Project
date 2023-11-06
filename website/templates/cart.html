@@ -3,14 +3,14 @@
 {% block title %}Cart{% endblock %}
 
 {% block content %}
-<div style="margin: 0 722px;">
-    <h1 class="cart-title">Cart</h1>
+<div class="centered-content">
+    <h1 class="center-text">Cart</h1>
     {% if pizza %}
         {% for piz in pizza %}
             <form method="post" action="/remove_pizza">
                 <div class="cart-item-container" style="margin-bottom: 10px;">
                     {% if piz %}
-                        <p>{{piz}}</p>
+                        <p class="center-text">{{piz}}</p>
                         <input type="hidden" name="pizzaName" value="{{piz}}">
                         <button type="submit" style="margin-left: 10px;">X</button>
                     {% endif %}
@@ -27,7 +27,7 @@
             <button class="center-button">Order now</button>
         </form>
     {% else %}
-        <p class="center-text">Your cart is empty.</p>
+        <p class="center-text one-line">Your cart is empty.</p>
     {% endif %}
 </div>
 </div>

@@ -239,3 +239,50 @@ body {
 .center-button {
   display: inline-block;
 }
+
+/* styles.css */
+/* ... (your existing styles) */
+
+.order-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.order-table th, .order-table td {
+  border: 1px solid #000; /* Border style and color */
+  padding: 8px;
+  text-align: left;
+}
+
+.order-table th {
+  background-color: #f2f2f2; /* Background color for table header */
+}
+
+.order-on-board {
+  border: 1px solid #000; /* Border style and color for table rows */
+}
+
+.center-table {
+  margin: 0 auto; /* Center the table horizontally */
+  width: 50%; /* Set a width as needed */
+}
+
+.order-number::before {
+  content: "";
+  display: block;
+  border-right: 1px solid #000; /* Create a black vertical line after "Order Number" */
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: -5px;
+}
+
+.status {
+  padding-left: 10px; /* Add some padding to separate "Status" from the line */
+}
+
+.center-table {
+  margin: 0 auto; /* Center the table horizontally */
+  width: 50%; /* Set a width as needed */
+}

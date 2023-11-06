@@ -1,16 +1,22 @@
 <meta http-equiv="refresh" content="1">
 {% extends "base.html" %}
 
-{% block title %}Orders Board{% endblock %}
+{% block title %}Orders board{% endblock %}
 
 {% block content%}
-
-    <h1> Orders Board</h1>
-    {% for ord in orders %}
-    <div class="order-on-board">
-    <p>Number: {{ord.id}} </p>
-    <p>Status: {{ord.status}} </p>
+    <div class="center-container">
+        <h1 class="center-text">Coming right up!</h1>
+        <br>
+        <table class="center-table">
+            <tbody>
+                {% for ord in orders %}
+                    <tr class="order-on-board">
+                        <td class="order-number">Order #{{ord.id}}:</td>
+                        <td class="status">{{ord.status}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {% endfor %}
-
+</div>
 {% endblock %}
