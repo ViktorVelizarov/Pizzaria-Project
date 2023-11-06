@@ -1,29 +1,29 @@
-<!--here we extend the base template-->
+<!-- here we extend the base template -->
 {% extends "base.html" %}
 
-<!--overide the title block from the base tempalte-->
+<!-- override the title block from the base template -->
 {% block title %}Home{% endblock %}
 
-{% block content%}
-
-    <div class="items-container">
-    {% for pizza in pizzas %}
-        <div class="pizza-container">
-            <h1> {{pizza.name}} </h1>
-
-
-            <form method="post" action="/pizzas/details">
-                    <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
-                    <img src={{pizza.image}} height="100px" width="100px"/> 
-                    <p> {{pizza.ingredients}} </p>
-                    <button type="submit">Details</button>
-            </form>
-            
-            <form method="post" action="/cart">
-                <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
-                <button type="submit">Order now</button>
-            </form>
+{% block content %}
+<div class="fade-in">
+        <div class="pizza-list">
+            {% for pizza in pizzas %}
+                <div class="pizza-container">
+                    <h1>{{ pizza.name }}</h1>
+                    <img src="{{ pizza.image }}" height="100px" width="100px" />
+                    <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
+                    <form method="post" action="/cart">
+                        <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
+                        <button type="submit">Add to cart</button>
+                    </form>
+                    <div style="margin-bottom: 10px;"></div> <!-- Add one blank line -->
+                </div>
+                {% if loop.index is divisibleby 3 %}
+                    <div style="clear: both;"></div>
+                {% endif %}
+            {% endfor %}
         </div>
-    {% endfor %}
-    <div>
+    </div>
+</div>
+
 {% endblock %}
