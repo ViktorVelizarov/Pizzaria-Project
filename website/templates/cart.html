@@ -3,33 +3,32 @@
 {% block title %}Cart{% endblock %}
 
 {% block content%}
-  
-    <h1> Cart</h1>
-    {% if pizza %}
-        {% for piz in pizza %}
-        <form method="post" action="/remove_pizza">
-            <div class="cart-item-container">
-                {% if piz %}
-                <p> {{piz}}</p>
-                <input type="hidden" name="pizzaName" value="{{piz}}">
-                <button type="submit">X</button>
-                {% endif %}
-            </div>
-        </form>
-        {% endfor %}
-        
-    <form method="post" action="/remove_all_pizzas">
-        <input type="hidden" name="removeAll" value="{{pizza}}">
-        <button> Clear Cart </button>
-    </form>
+    <div style="margin: 0 722px;">
+        <h1>Cart</h1>
+        {% if pizza %}
+            {% for piz in pizza %}
+                <form method="post" action="/remove_pizza">
+                    <div class="cart-item-container" style="margin-bottom: 10px;">
+                        {% if piz %}
+                            <p>{{piz}}</p>
+                            <input type="hidden" name="pizzaName" value="{{piz}}">
+                            <button type="submit" style="margin-left: 10px;">X</button> <!-- Add margin-left to create space between pizza and "X" button -->
+                        {% endif %}
+                    </div>
+                </form>
+            {% endfor %}
+            <form method="post" action="/remove_all_pizzas">
+                <input type="hidden" name="removeAll" value="{{pizza}}">
+                <button>Clear cart</button>
+            </form>
 
-    <form method="post" action="/receive-orders">
-        <input type="hidden" name="currentOrder" value="{{pizza}}">
-        <button> Place Order </button>
-    </form>
+            <form method="post" action="/receive-orders">
+                <input type="hidden" name="currentOrder" value="{{pizza}}">
+                <button>Order now</button>
+            </form>
 
-    {% else %}
-     <p> Your cart is empty. </p>
-    {% endif %}
-
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
 {% endblock %}

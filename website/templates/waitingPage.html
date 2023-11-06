@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Waiting page{% endblock %}
+
+{% block content %}
+    <div class="centered-content">
+        <h1>Coming right up!</h1>
+        {% if yourOrder %}
+            <p>Your order number is <span class="order-number">{{ yourOrder.id }}</span></p>
+        {% else %}
+            <p>You haven't made an order yet</p>
+        {% endif %}
+    </div>
+{% endblock %}
