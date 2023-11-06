@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Order Number{% endblock %}
+{% block title %}Coming right up!{% endblock %}
 
-{% block content%}
-    {% if yourOrder%}
-        <p> Your order number is {{yourOrder.id}} </p>
+{% block content %}
+    {% if yourOrder %}
+        <p class="horizontal-center-text">Your order number is {{yourOrder.id}}</p>
         <form method="get" action="/orders-board">
             <input type="hidden" name="redirect" value="true">
             <button type="submit">Check Status</button>
         </form>
-    {% else%}
-        <p> You havent made an order yet </p>
-    {% endif%}
+    {% else %}
+        <p class="horizontal-center-text">You haven't made an order yet</p>
+    {% endif %}
 {% endblock %}

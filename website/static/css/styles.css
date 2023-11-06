@@ -204,3 +204,38 @@ body {
 .orders button {
   margin-right: 10px;
 }
+
+.cart-title {
+  text-align: center;
+}
+
+.center-button {
+  display: block;
+  margin: 0 auto;
+}
+
+.horizontal-center-text {
+  text-align: center;
+}
+
+.center-text {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.centered-content h1 {
+  text-align: center;
+}
+
+.center-button {
+  display: inline-block;
+}

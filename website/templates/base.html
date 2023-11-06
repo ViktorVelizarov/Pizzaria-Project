@@ -65,12 +65,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/cart">Cart</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Log out</a>
-            </li>
             {% if user.role == "admin" %}
             <li class="nav-item">
               <a class="nav-link" href="/receive-orders">Receive orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log out</a>
             </li>
             {% endif %}
             {% else %}

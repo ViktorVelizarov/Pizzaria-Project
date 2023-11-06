@@ -2,17 +2,17 @@
 
 {% block title %}Orders{% endblock %}
 
-{% block content%}
-
-    <h1>Receive orders</h1>
-    {% for ord in order %}
-    <form method="post" action="/start_order">
-        <div class="orders">
-        <p>{{ord}}</p>
-        <input type="hidden" name="chosenOrder" value="{{ord}}">
-        <button> Start </button>
-        </div>
-    </form>
-    {% endfor %}
-
+{% block content %}
+    <div class="centered-content">
+        <h1>Receive orders</h1>
+        {% for ord in order %}
+        <form method="post" action="/start_order">
+            <div class="orders">
+                <p>{{ord}}</p>
+                <input type="hidden" name="chosenOrder" value="{{ord}}">
+                <button class="center-button">Start</button>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
 {% endblock %}
