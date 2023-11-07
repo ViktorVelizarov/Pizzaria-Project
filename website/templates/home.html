@@ -1,23 +1,35 @@
-<!-- here we extend the base template -->
+<!-- Extending the "base.html" template -->
 {% extends "base.html" %}
 
-<!-- override the title block from the base template -->
+<!-- Overriding the title block from the base template -->
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<!-- Adding a fade-in effect to the content -->
 <div class="fade-in">
+    <!-- Container for items (e.g., pizzas) -->
+    <div class="items-container">
+        <!-- Container for a list of pizzas -->
         <div class="pizza-list">
+            <!-- Loop through a list of pizzas -->
             {% for pizza in pizzas %}
+                <!-- Individual pizza container -->
                 <div class="pizza-container">
+                    <!-- Display the pizza name -->
                     <h1>{{ pizza.name }}</h1>
+                    <!-- Display the pizza image -->
                     <img src="{{ pizza.image }}" height="100px" width="100px" />
+                    <!-- Display the pizza ingredients -->
                     <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
+                    <!-- Form to add the pizza to the cart -->
                     <form method="post" action="/cart">
                         <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
                         <button type="submit">Add to cart</button>
                     </form>
-                    <div style="margin-bottom: 10px;"></div> <!-- Add one blank line -->
+                    <!-- Adding some space (blank line) below each pizza container -->
+                    <div style="margin-bottom: 10px;"></div>
                 </div>
+                <!-- If the current iteration index is divisible by 3, clear the floating elements -->
                 {% if loop.index is divisibleby 3 %}
                     <div style="clear: both;"></div>
                 {% endif %}

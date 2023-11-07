@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="https://i.imgur.com/xByt3Ow.png" type="image/png" />
+
     <style>
       /* Custom CSS to center the brand text and style the logo */
       .navbar-center {
@@ -47,69 +48,70 @@
 
     <body class="user-select-none"> <!-- Add the class to the body element -->
       <!-- Your existing HTML content goes here -->
-    <!-- Navbar using Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container"> <!-- Add a container for centering -->
-        <a class="navbar-brand navbar-center" href="/">
-          <img src="https://i.pinimg.com/originals/80/ef/c2/80efc210d07e4e1c1a81f06fb7d87ce4.jpg" alt="Logo" class="logo-image">
-          <span class="navbar-text" style="color: orange;">Mario & Luigi's Pizzeria</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cart">Cart</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Log out</a>
-            </li>
-            {% if user.role == "admin" %}
-            <li class="nav-item">
-              <a class="nav-link" href="/receive-orders">Receive orders</a>
-            </li>
-            {% endif %}
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sign-up">Sign up</a>
-            </li>
-            {% endif %}
-          </ul>
+
+      <!-- Navbar using Bootstrap -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container"> <!-- Add a container for centering -->
+          <a class="navbar-brand navbar-center" href="/">
+            <img src="https://i.pinimg.com/originals/80/ef/c2/80efc210d07e4e1c1a81f06fb7d87ce4.jpg" alt="Logo" class="logo-image">
+            <span class="navbar-text" style="color: orange;">Mario & Luigi's Pizzeria</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cart">Cart</a>
+              </li>
+              {% if user.role == "admin" %}
+              <li class="nav-item">
+                <a class="nav-link" href="/receive-orders">Receive orders</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+              </li>
+              {% endif %}
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign up</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
+      </nav>
+
+      <!-- Code that displays flash messages -->
+      <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <br> <!-- Add an empty line before the message -->
+        <div
+          class="alert {{ 'alert-success' if category == 'success' else 'alert-danger' }} mx-auto"
+          role="alert"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
       </div>
-    </nav>
 
-    <!-- Code that displays flash messages -->
-    <div class="container">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <br> <!-- Add an empty line before the message -->
-      <div
-        class="alert {{ 'alert-success' if category == 'success' else 'alert-danger' }} mx-auto"
-        role="alert"
-      >
-        {{ message }}
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-    </div>
+      <!-- Block we use to render different content -->
+      <div>{% block content %} {% endblock %}</div>
 
-    <!-- Block we use to render different content -->
-    <div>{% block content %} {% endblock %}</div>
-
-    <!-- Bootstrap JavaScript (Popper.js and Bootstrap JS) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+      <!-- Bootstrap JavaScript (Popper.js and Bootstrap JS) -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </html>

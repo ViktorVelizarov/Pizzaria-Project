@@ -1,43 +1,54 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
-content %}
+<!-- Extend the "base.html" template -->
+{% extends "base.html" %}
 
-<!--when you submit the form send a POST req-->
+<!-- Override the title block from the base template -->
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<!-- Create a centered form container for sign-up -->
 <div class="centered-form">
-<form method="POST">
-  <h3 align="center">Sign up</h3>
-  <div>
-    <label for="email">Email address</label>
-    <input type="email" id="email" name="email" placeholder="Enter email" />
-  </div>
-  <div>
-    <label for="firstName">First name</label>
-    <input
-      type="text"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter first name"
-    />
-  </div>
-  <div>
-    <label for="password1">Password</label>
-    <input
-      type="password"
-      id="password1"
-      name="password1"
-      placeholder="Enter password"
-    />
-  </div>
-  <div>
-    <label for="password2">Confirm password</label>
-    <input
-      type="password"
-      id="password2"
-      name="password2"
-      placeholder="Confirm password"
-    />
-  </div>
-  <br />
-  <button type="submit">Submit</button>
-</form>
+  <!-- Define a form with the POST method for user registration -->
+  <form method="POST">
+    <!-- Display the sign-up heading centered -->
+    <h3 align="center">Sign up</h3>
+    <div>
+      <!-- Input field for the user's email address -->
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" />
+    </div>
+    <div>
+      <!-- Input field for the user's first name -->
+      <label for="firstName">First name</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="Enter first name"
+      />
+    </div>
+    <div>
+      <!-- Input field for the user's password -->
+      <label for="password1">Password</label>
+      <input
+        type="password"
+        id="password1"
+        name="password1"
+        placeholder="Enter password"
+      />
+    </div>
+    <div>
+      <!-- Input field for confirming the user's password -->
+      <label for="password2">Confirm password</label>
+      <input
+        type="password"
+        id="password2"
+        name="password2"
+        placeholder="Confirm password"
+      />
+    </div>
+    <br />
+    <!-- Submit button to send the sign-up form data -->
+    <button type="submit">Submit</button>
+  </form>
 </div>
 {% endblock %}
