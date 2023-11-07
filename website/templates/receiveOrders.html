@@ -8,9 +8,9 @@
     {%for order in allOrders%}
     <form method="post" action="/start_order">
         <div class="orders">
-        <p>Id: {{order.id}} ____</p>
-        <p>Content: {{order.orderedItems}} ____</p>
-        <p>Status: {{order.status}} ____</p>
+        <p>Id: {{order.id}} </p>
+        <p>Content: {{order.orderedItems}} </p>
+        <p>Status: {{order.status}} </p>
         <input type="hidden" name="chosen_id" value="{{order.id}}">
         <button> Start </button>
         </div>
