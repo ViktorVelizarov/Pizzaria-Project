@@ -17,6 +17,8 @@ class Pizza(db.Model):
     name = db.Column(db.String(150))
     image = db.Column(db.String(150))
     ingredients = db.Column(db.String(500))
+
+    cost = db.Column(db.Float)
     
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)    #primary key
@@ -29,5 +31,6 @@ class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)    #primary key
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))         #foreign key
     content = db.Column(db.String(500))
+    content_prices = db.Column(db.String(500))
     
     

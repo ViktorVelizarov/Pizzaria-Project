@@ -1,9 +1,18 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
+<!-- Extend the "base.html" template -->
+{% extends "base.html" %}
+
+<!-- Override the title block from the base template -->
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<!-- Container for centering the login form -->
 <div class="centered-form">
+  <!-- Login form with a POST method -->
   <form method="POST">
+    <!-- Centered heading for "Login" -->
     <h3 align="center">Login</h3>
     <div>
+      <!-- Input field for email address -->
       <label for="email">Email address</label>
       <input
         type="email"
@@ -13,6 +22,7 @@
       />
     </div>
     <div>
+      <!-- Input field for the password -->
       <label for="password">Password</label>
       <input
         type="password"
@@ -22,9 +32,8 @@
       />
     </div>
     <br>
+    <!-- Submit button for the login form -->
     <button type="submit">Login</button>
   </form>
 </div>
-
-
 {% endblock %}

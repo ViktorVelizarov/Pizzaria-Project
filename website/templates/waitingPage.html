@@ -1,13 +1,19 @@
+<!-- Extend the "base.html" template -->
 {% extends "base.html" %}
 
+<!-- Override the title block from the base template -->
 {% block title %}Waiting page{% endblock %}
 
 {% block content %}
+    <!-- Create a centered content container -->
     <div class="centered-content">
+        <!-- Display a heading in the centered content -->
         <h1>Coming right up!</h1>
         {% if yourOrder %}
+            <!-- Check if an order exists and display its order number -->
             <p>Your order number is <span class="order-number">{{ yourOrder.id }}</span></p>
         {% else %}
+            <!-- Display a message if no order has been made -->
             <p>You haven't made an order yet</p>
         {% endif %}
     </div>

@@ -1,36 +1,68 @@
+<!-- Extending the "base.html" template -->
 {% extends "base.html" %}
 
+<!-- Overriding the title block from the base template -->
 {% block title %}Cart{% endblock %}
 
-{% block content%}
-<div style="margin: 0 722px;">
-    <h1> Cart</h1>
+{% block content %}
+<!-- Container for centered content -->
+<div class="centered-content">
+    <!-- Heading for the cart page -->
+    <h1 class="center-text">Cart</h1>
+
+    <div class="flexRow"> 
+    {% if costs %}
+        <div class="flex-column">   
+            {% for cost in costs.split(', ') %}  
+                <div style="margin-bottom: 10px; margin-right: 10px;">
+                    <p class="center-text">{{cost}}</p>
+                </div> 
+            {% endfor %}
+        </div> 
+    {% endif %}
+    <!-- Check if there are pizzas in the cart -->
     {% if pizza %}
-    {% for piz in pizza.split(', ') %}
-        <form method="post" action="/remove_pizza">
-            <div class="cart-item-container" style="margin-bottom: 10px;">
-                {% if piz %}
-                <p> {{piz}}</p>
-                <input type="hidden" name="pizzaName" value="{{piz}}">
-                    <!-- Add margin-left to create space between pizza and "X" button -->
-                <button type="submit" style="margin-left: 10px;">X</button> 
-                {% endif %}
-            </div>
-        </form>
-        {% endfor %}
-        
-    <form method="post" action="/remove_all_pizzas">
-        <input type="hidden" name="removeAll" value="{{pizza}}">
-        <button> Clear Cart </button>
-    </form>
-
-            <form method="post" action="/receive-orders">
-                <input type="hidden" name="currentOrder" value="{{pizza}}">
-                <button>Order now</button>
+        <!-- Loop through the list of pizzas in the cart -->
+        <div class="flex-column"> 
+        {% for piz in pizza.split(', ') %}
+            <form method="post" action="/remove_pizza">
+                <div class="cart-item-container" style="margin-bottom: 10px;">
+                    <!-- Check if the current pizza exists -->
+                    {% if piz %}
+                        <!-- Display the pizza name and center the text -->
+                        <p class="center-text">{{piz}}</p>
+                        <!-- Create a hidden input with the pizza name for removal -->
+                        <input type="hidden" name="pizzaName" value="{{piz}}">
+                        <!-- Button to remove the pizza from the cart -->
+                        <button type="submit" style="margin-left: 10px; width: 23px; height: 23px; items-center;">X</button>
+                    {% endif %}
+                </div>
             </form>
+        {% endfor %}
+        </div>
+        </div>
+        <div> 
 
-        {% else %}
-            <p>Your cart is empty.</p>
-        {% endif %}
-    </div>
+        <!-- Form to remove all pizzas from the cart -->
+        <form method="post" action="/remove_all_pizzas">
+            <!-- Create a hidden input with the list of pizzas to remove -->
+            <input type="hidden" name="removeAll" value="{{pizza}}">
+            <!-- Button to clear the entire cart -->
+            <button class="center-button">Clear cart</button>
+        </form>
+
+        <!-- Form to proceed with the order -->
+        <form method="post" action="/receive-orders">
+            <!-- Create a hidden input with the current order's pizzas -->
+            <input type="hidden" name="currentOrder" value="{{pizza}}">
+            <!-- Button to place the order -->
+            <p>Order Cost: {{totalCost}} </p>
+            <button class="center-button">Order now</button>
+        </form>
+    {% else %}
+        <!-- Display a message when the cart is empty and center the text -->
+        <p class="center-text one-line">Your cart is empty.</p>
+    {% endif %}
+
+</div>
 {% endblock %}
