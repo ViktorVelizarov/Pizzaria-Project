@@ -283,3 +283,8 @@ body {
   margin: 0 auto;
   width: 50%;
 }
+
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}

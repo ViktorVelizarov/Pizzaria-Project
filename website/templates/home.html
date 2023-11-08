@@ -26,6 +26,7 @@
                     <!-- Form to add the pizza to the cart -->
                     <form method="post" action="/cart">
                         <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
+                        <input type="hidden" name="pizzaCost" value="{{ pizza.cost }}">
                         <button type="submit">Add to cart</button>
                     </form>
                     <!-- Adding some space (blank line) below each pizza container -->
