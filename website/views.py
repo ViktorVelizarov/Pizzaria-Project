@@ -160,7 +160,7 @@ def start_order():
     startedOrder = Order.query.get(chosen_id)       # Retrieve the order
 
     if startedOrder:                         # Check if the order exists
-        startedOrder.status = "cooking"      # Update the status field    
+        startedOrder.status = "In preparation"      # Update the status field    
         db.session.commit()                  # Commit the changes to the database
 
     allOrders = Order.query.all()

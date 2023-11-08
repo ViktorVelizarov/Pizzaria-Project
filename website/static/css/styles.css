@@ -294,3 +294,9 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.flexRowClass{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

@@ -42,28 +42,30 @@
         </div>
         </div>
         <div class="center-text"> 
+        <div class="flexRowClass">
+            <!-- Form to remove all pizzas from the cart -->
+            <form method="post" action="/remove_all_pizzas">
+                <!-- Create a hidden input with the list of pizzas to remove -->
+                <input type="hidden" name="removeAll" value="{{ pizza }}">
+                <!-- Button to clear the entire cart -->
+                <button class="center-button">Clear cart</button>
+            </form>
 
-        <!-- Form to remove all pizzas from the cart -->
-        <form method="post" action="/remove_all_pizzas">
-            <!-- Create a hidden input with the list of pizzas to remove -->
-            <input type="hidden" name="removeAll" value="{{ pizza }}">
-            <!-- Button to clear the entire cart -->
-            <button class="center-button">Clear cart</button>
-        </form>
+            <!-- Add an empty line between buttons and center them horizontally -->
 
-        <!-- Add an empty line between buttons and center them horizontally -->
-
-        <!-- Form to proceed with the order -->
-        <form method="post" action="/receive-orders">
-            <!-- Create a hidden input with the current order's pizzas -->
-            <input type="hidden" name="currentOrder" value="{{ pizza }}">
-            <!-- Button to place the order -->
-            <button class="center-button">Order now</button>
-            <br>
-            <br>
-            <!-- Make the number in the subtotal bold -->
-            <p><strong>Subtotal: €{{ totalCost }}</strong></p>
-        </form>
+            <!-- Form to proceed with the order -->
+            <form method="post" action="/receive-orders">
+                <!-- Create a hidden input with the current order's pizzas -->
+                <input type="hidden" name="currentOrder" value="{{ pizza }}">
+                <!-- Button to place the order -->
+                <button class="center-button">Order now</button>
+                <br>
+                <br>
+                
+            </form>
+        </div>
+        <!-- Make the number in the subtotal bold -->
+        <p><strong>Subtotal: €{{ totalCost }}</strong></p>
     {% else %}
         <!-- Display a message when the cart is empty and center the text -->
         <p class="center-text one-line">Your cart is empty.</p>
