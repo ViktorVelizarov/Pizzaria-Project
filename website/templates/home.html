@@ -1,37 +1,12 @@
-<<<<<<< HEAD
-{% extends "base.html" %}
-
-=======
 <!-- Extending the "base.html" template -->
 {% extends "base.html" %}
 
 <!-- Overriding the title block from the base template -->
->>>>>>> 25836369827516571562627704c03fd123b35914
 {% block title %}Home{% endblock %}
 
 {% block content %}
 <!-- Adding a fade-in effect to the content -->
 <div class="fade-in">
-<<<<<<< HEAD
-    <div class="pizza-list">
-        {% for pizza in pizzas %}
-            <div class="pizza-container">
-                <h1>{{ pizza.name }}</h1>
-                <a href="/pizza/{{ pizza.id }}"> <!-- Replace "/pizza/{{ pizza.id }}" with the actual URL you want to link to -->
-                    <img src="{{ pizza.image }}" height="100px" width="100px" />
-                </a>
-                <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
-                <form method="post" action="/cart">
-                    <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
-                    <button type="submit">Add to cart</button>
-                </form>
-                <div style="margin-bottom: 10px;"></div>
-            </div>
-            {% if loop.index is divisibleby 3 %}
-                <div style="clear: both;"></div>
-            {% endif %}
-        {% endfor %}
-=======
     <!-- Container for items (e.g., pizzas) -->
     <div class="items-container">
         <!-- Container for a list of pizzas -->
@@ -46,7 +21,7 @@
                     <img src="{{ pizza.image }}" height="100px" width="100px" />
                     <!-- Display the pizza ingredients -->
                     <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
-                  
+
                     <p>{{ pizza.cost }} </p>
                     <!-- Form to add the pizza to the cart -->
                     <form method="post" action="/cart">
@@ -63,7 +38,6 @@
                 {% endif %}
             {% endfor %}
         </div>
->>>>>>> 25836369827516571562627704c03fd123b35914
     </div>
 </div>
 {% endblock %}
