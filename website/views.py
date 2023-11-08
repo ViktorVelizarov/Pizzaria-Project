@@ -92,7 +92,7 @@ def receiveOrders():
     global currentOrder
     if request.method == 'POST': 
         currentOrderInfo = request.form.get('currentOrder')
-        new_order = Order(date=datetime.now(), user_id=current_user.id, status="pending",  orderedItems = currentOrderInfo)     #create new user and hash his password, sha256 is a hashind method
+        new_order = Order(date=datetime.now(), user_id=current_user.id, status="Pending",  orderedItems = currentOrderInfo)     #create new user and hash his password, sha256 is a hashind method
         db.session.add(new_order)             #add the new order to the DB
         db.session.commit()   
         currentOrder = new_order  
@@ -113,9 +113,9 @@ def receiveOrders():
    
     else:
         allOrders = Order.query.all()  
-        pending_orders = Order.query.filter(Order.status == "pending").all()
-        cooking_orders = Order.query.filter(Order.status == "cooking").all()
-        ready_orders = Order.query.filter(Order.status == "ready").all()   
+        pending_orders = Order.query.filter(Order.status == "Pending").all()
+        cooking_orders = Order.query.filter(Order.status == "In preparation").all()
+        ready_orders = Order.query.filter(Order.status == "Ready").all()   
         return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders) 
 
 @views.route('/remove_pizza', methods=['POST'])
@@ -164,9 +164,9 @@ def start_order():
         db.session.commit()                  # Commit the changes to the database
 
     allOrders = Order.query.all()
-    pending_orders = Order.query.filter(Order.status == "pending").all()
-    cooking_orders = Order.query.filter(Order.status == "cooking").all()
-    ready_orders = Order.query.filter(Order.status == "ready").all()
+    pending_orders = Order.query.filter(Order.status == "Pending").all()
+    cooking_orders = Order.query.filter(Order.status == "In preparation").all()
+    ready_orders = Order.query.filter(Order.status == "Ready").all()
     return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders)
 
 @views.route('/finish_order', methods=['POST'])
@@ -177,11 +177,11 @@ def finish_order():
     startedOrder = Order.query.get(chosen_id)       # Retrieve the order
 
     if startedOrder:                         # Check if the order exists
-        startedOrder.status = "ready"      # Update the status field    
+        startedOrder.status = "Ready"      # Update the status field    
         db.session.commit()                  # Commit the changes to the database
 
     allOrders = Order.query.all()
-    pending_orders = Order.query.filter(Order.status == "pending").all()
-    cooking_orders = Order.query.filter(Order.status == "cooking").all()
-    ready_orders = Order.query.filter(Order.status == "ready").all()
+    pending_orders = Order.query.filter(Order.status == "Pending").all()
+    cooking_orders = Order.query.filter(Order.status == "In preparation").all()
+    ready_orders = Order.query.filter(Order.status == "Ready").all()
     return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders)    

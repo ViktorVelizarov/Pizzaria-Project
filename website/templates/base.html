@@ -72,10 +72,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="/receive-orders">Receive orders</a>
               </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/orders-board">My orders</a>
+              </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>
               </li>
-              {% endif %}
               {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="/login">Log in</a>

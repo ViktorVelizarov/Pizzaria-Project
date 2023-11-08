@@ -21,8 +21,8 @@
                     <img src="{{ pizza.image }}" height="100px" width="100px" />
                     <!-- Display the pizza ingredients -->
                     <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
-
-                    <p>{{ pizza.cost }} </p>
+                  
+                    <p><strong>€{{ pizza.cost }}</strong></p>
                     <!-- Form to add the pizza to the cart -->
                     <form method="post" action="/cart">
                         <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
