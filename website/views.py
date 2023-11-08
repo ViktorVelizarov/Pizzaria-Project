@@ -75,8 +75,8 @@ def greet():
 @views.route('/orders-board', methods=['GET'])
 @login_required
 def ordersBoard():
-    allOrders = Order.query.all()
-    return render_template("ordersBoard.html", user=current_user, orders=allOrders)  
+    userOrders= Order.query.filter(Order.user_id == current_user.id).all()
+    return render_template("ordersBoard.html", user=current_user, orders=userOrders)  
 
 @views.route('/receive-orders', methods=['GET', 'POST'])  
 @login_required
@@ -104,8 +104,11 @@ def receiveOrders():
         return render_template("orderNumber.html", user=current_user, yourOrder=currentOrder, orders=allOrders) 
    
     else:
-        allOrders = Order.query.all()     
-        return render_template("receiveOrders.html", user=current_user, allOrders=allOrders) 
+        allOrders = Order.query.all()  
+        pending_orders = Order.query.filter(Order.status == "pending").all()
+        cooking_orders = Order.query.filter(Order.status == "cooking").all()
+        ready_orders = Order.query.filter(Order.status == "ready").all()   
+        return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders) 
 
 @views.route('/remove_pizza', methods=['POST'])
 @login_required
@@ -136,13 +139,33 @@ def remove_all_pizza():
 @views.route('/start_order', methods=['POST'])
 @login_required
 def start_order():
-    chosen_id = request.form.get('chosen_id') 
+    chosen_id = request.form.get('chosenOrder') 
+
     startedOrder = Order.query.get(chosen_id)       # Retrieve the order
-    print("startedOrder")
-    print(startedOrder)
+
     if startedOrder:                         # Check if the order exists
         startedOrder.status = "cooking"      # Update the status field    
         db.session.commit()                  # Commit the changes to the database
 
     allOrders = Order.query.all()
-    return render_template("receiveOrders.html", user=current_user, allOrders=allOrders)  
+    pending_orders = Order.query.filter(Order.status == "pending").all()
+    cooking_orders = Order.query.filter(Order.status == "cooking").all()
+    ready_orders = Order.query.filter(Order.status == "ready").all()
+    return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders)
+
+@views.route('/finish_order', methods=['POST'])
+@login_required
+def finish_order():
+    chosen_id = request.form.get('chosenOrder') 
+
+    startedOrder = Order.query.get(chosen_id)       # Retrieve the order
+
+    if startedOrder:                         # Check if the order exists
+        startedOrder.status = "ready"      # Update the status field    
+        db.session.commit()                  # Commit the changes to the database
+
+    allOrders = Order.query.all()
+    pending_orders = Order.query.filter(Order.status == "pending").all()
+    cooking_orders = Order.query.filter(Order.status == "cooking").all()
+    ready_orders = Order.query.filter(Order.status == "ready").all()
+    return render_template("receiveOrders.html", user=current_user, pending_orders=pending_orders, cooking_orders=cooking_orders, ready_orders=ready_orders)    
