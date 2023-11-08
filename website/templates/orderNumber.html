@@ -7,14 +7,15 @@
 {% block content %}
     <!-- Check if 'yourOrder' exists -->
     {% if yourOrder %}
+    <br>
         <!-- Display the order number with horizontal centering -->
-        <p class="horizontal-center-text">Your order number is {{yourOrder.id}}</p>
+        <p class="horizontal-center-text">Your order number is <strong>{{yourOrder.id}}</strong></p>
         <!-- Form for checking order status with a GET request -->
-        <form method="get" action="/orders-board">
+        <form method="get" action="/orders-board" class="horizontal-center-text">
             <!-- Hidden input to indicate a redirect -->
             <input type="hidden" name="redirect" value="true">
             <!-- Submit button to check the order status -->
-            <button type="submit">Check Status</button>
+            <button type="submit">Check status</button>
         </form>
     {% else %}
         <!-- Display a message for users who haven't made an order yet with horizontal centering -->

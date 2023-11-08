@@ -11,7 +11,7 @@
         <h1>Coming right up!</h1>
         {% if yourOrder %}
             <!-- Check if an order exists and display its order number -->
-            <p>Your order number is <span class="order-number">{{ yourOrder.id }}</span></p>
+            <p>Your order number is <span class="order-number"><strong>{{ yourOrder.id }}</span></p>
         {% else %}
             <!-- Display a message if no order has been made -->
             <p>You haven't made an order yet</p>
