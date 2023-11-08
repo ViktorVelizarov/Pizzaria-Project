@@ -1,52 +1,112 @@
-<!-- Extend the "base.html" template -->
 {% extends "base.html" %}
 
-<!-- Override the title block from the base template -->
 {% block title %}Orders{% endblock %}
 
 {% block content %}
-    <!-- Create a centered content container -->
     <div class="centered-content">
-        <!-- Display the main heading -->
-        <h1>Pending orders</h1>
-        <!-- Loop through the list of orders -->
-        {% if pending_orders%}
-        {%for order in pending_orders%}
-            <form method="post" action="/start_order">
-                <div class="orders">
-                    <!-- Display the order information -->
-                    <p>Id: {{order.id}} </p>
-                    <p>Content: {{order.orderedItems}} </p>
-                    <!-- Hidden input to store the chosen order -->
-                    <input type="hidden" name="chosenOrder" value="{{order.id}}">
-                    <!-- Button to start processing the order -->
-                    <button class="center-button">Start</button>
-                </div>
-            </form>
-            
-        {% endfor %}
-        {% else%}
-                <p> No pending orders.</p>
-        {% endif%}
+        <section class="order-section">
+            <h1>Pending orders</h1>
+            {% if pending_orders %}
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Items</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in pending_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.orderedItems }}</td>
+                        <td>
+                            <form method="post" action="/start_order">
+                                <input type="hidden" name="chosenOrder" value="{{ order.id }}">
+                                <button class="start-button">Start</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No pending orders.</p>
+            {% endif %}
+        </section>
 
-        <h1>Cooking orders</h1>
-        <!-- Loop through the list of orders -->
-        {% if cooking_orders%}
-        {%for order in cooking_orders%}
-            <form method="post" action="/finish_order">
-                <div class="orders">
-                    <!-- Display the order information -->
-                    <p>Id: {{order.id}} </p>
-                    <p>Content: {{order.orderedItems}} </p>
-                    <!-- Hidden input to store the chosen order -->
-                    <input type="hidden" name="chosenOrder" value="{{order.id}}">
-                    <!-- Button to start processing the order -->
-                    <button class="center-button">Finish</button>
-                </div>
-            </form>
-        {% endfor %}
-        {% else%}
-                <p> No cooking orders.</p>
-        {% endif%}
+        <section class="order-section">
+            <h1>Cooking orders</h1>
+            {% if cooking_orders %}
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Items</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in cooking_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.orderedItems }}</td>
+                        <td>
+                            <form method="post" action="/finish_order">
+                                <input type="hidden" name="chosenOrder" value="{{ order.id }}">
+                                <button class="finish-button">Finish</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No cooking orders.</p>
+            {% endif %}
+        </section>
     </div>
+</div>
+
+<style>
+    .centered-content {
+        margin-top: 20px;
+    }
+
+    .order-section {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: beige; /* Match the background color */
+        border-radius: 10px;
+    }
+
+    .order-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .order-table th, .order-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .order-table th {
+        background-color: #f2f2f2;
+    }
+
+    .start-button, .finish-button {
+        background-color: var(--primary); /* Match the primary color */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .start-button:hover, .finish-button:hover {
+        background-color: var(--light); /* Match the light color for hover effect */
+    }
+</style>
+
 {% endblock %}
