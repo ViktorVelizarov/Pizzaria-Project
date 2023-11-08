@@ -1,29 +1,27 @@
-<!-- here we extend the base template -->
 {% extends "base.html" %}
 
-<!-- override the title block from the base template -->
 {% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="fade-in">
-        <div class="pizza-list">
-            {% for pizza in pizzas %}
-                <div class="pizza-container">
-                    <h1>{{ pizza.name }}</h1>
+    <div class="pizza-list">
+        {% for pizza in pizzas %}
+            <div class="pizza-container">
+                <h1>{{ pizza.name }}</h1>
+                <a href="/pizza/{{ pizza.id }}"> <!-- Replace "/pizza/{{ pizza.id }}" with the actual URL you want to link to -->
                     <img src="{{ pizza.image }}" height="100px" width="100px" />
-                    <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
-                    <form method="post" action="/cart">
-                        <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
-                        <button type="submit">Add to cart</button>
-                    </form>
-                    <div style="margin-bottom: 10px;"></div> <!-- Add one blank line -->
-                </div>
-                {% if loop.index is divisibleby 3 %}
-                    <div style="clear: both;"></div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                </a>
+                <p class="ingredients" style="margin: 10px;">{{ pizza.ingredients }}</p>
+                <form method="post" action="/cart">
+                    <input type="hidden" name="pizzaName" value="{{ pizza.name }}">
+                    <button type="submit">Add to cart</button>
+                </form>
+                <div style="margin-bottom: 10px;"></div>
+            </div>
+            {% if loop.index is divisibleby 3 %}
+                <div style="clear: both;"></div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
-
 {% endblock %}
